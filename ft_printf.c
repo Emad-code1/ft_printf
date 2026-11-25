@@ -6,7 +6,7 @@
 /*   By: imhsikko <imhsikko@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/19 18:34:31 by username          #+#    #+#             */
-/*   Updated: 2026/11/23 15:07:08 by imhsikko         ###   ########.fr       */
+/*   Updated: 2026/11/25 18:54:45 by imhsikko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,20 @@ static int	print_unknown(char f)
 
 static int	printf_format(char f, va_list ap)
 {
-	char	*decimal;
-	char	*hex;
-	char	*big_hex;
-
-	decimal = "0123456789";
-	hex = "0123456789abcdef";
-	big_hex = "0123456789ABCDEF";
 	if (f == 'c')
 		return (ft_print_char(va_arg(ap, int)));
 	if (f == 's')
 		return (ft_print_str(va_arg(ap, char *)));
 	if (f == 'd' || f == 'i')
-		return (ft_print_digit(va_arg(ap, int), decimal));
+		return (ft_print_digit(va_arg(ap, int), "0123456789"));
 	if (f == 'u')
-		return (ft_printnbr_base(va_arg(ap, unsigned int), decimal));
+		return (ft_printnbr_base(va_arg(ap, unsigned int), "0123456789"));
 	if (f == 'x')
-		return (ft_printnbr_base(va_arg(ap, unsigned int), hex));
+		return (ft_printnbr_base(va_arg(ap, unsigned int), "0123456789abcdef"));
 	if (f == 'X')
-		return (ft_printnbr_base(va_arg(ap, unsigned int), big_hex));
+		return (ft_printnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 	if (f == 'p')
-		return (ft_print_ptr(va_arg(ap, void *), hex));
+		return (ft_print_ptr(va_arg(ap, void *), "0123456789abcdef"));
 	if (f == '%')
 		return (ft_print_char(f));
 	return (print_unknown(f));
